@@ -11,12 +11,14 @@ def values_input():
 
 def digit_errors(value, name):
     while True:
-        if float(value):
+        if value.isdigit():
+            value = float(value)
+            print(type(value))
             break
-
-
-        elif value.replace(',', '.', 1).isdigit():
-            value = value.replace(',', '.', 1)
+        elif float(value.replace(',', '.', 1)):
+            print(type(value))
+            value = float(value.replace(',', '.', 1))
+            print(type(value))
             break
         else:
             value = input(f'Введите верное число {name}: ')
