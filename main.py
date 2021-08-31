@@ -1,5 +1,7 @@
 import entering
+import logic
 
 values = entering.values_input()
-for value in values:
-  print(value)
+logic.parameter_exception(values)
+result = logic.parameter_calculation(values)
+print(result)

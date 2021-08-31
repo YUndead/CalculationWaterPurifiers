@@ -1,30 +1,25 @@
 def values_input():
-    values_name = ['рН', 'мутности', 'цветности', 'железа']
+    values_name = ['рН' , 'мутности' , 'цветности' , 'железа общего' , 'железа Fe2+' , 'общей жесткости' , 'марганца' , 'ПМО']
     print('Введите необходимые показатели состава воды')
+    print('Если показатель отсутствует введите ноль')
     print()
     values = list()
     for name in values_name:
-        value = input(f'Введите показатель {name}: ')
-        values.append(digit_errors(value, name))
+      value = input(f'Введите показатель {name}: ')
+      values.append(digit_errors(value, name))
     return values
 
 
 def digit_errors(value, name):
-    while True:
-        digit_value = value.replace(',', '.', 1)
-        digit_value = digit_value.replace('.', '', 1)
-        for char in digit_value:
-            if not char.isdigit():
-                value = input(f'Введите числовое значение {name}: ')
-
-        if value.isdigit():
-            value = float(value)
-            print(type(value))
-            break
-        elif float(value.replace(',', '.', 1)):
-            print(type(value))
-            value = float(value.replace(',', '.', 1))
-            print(type(value))
-            break
-
-    return value
+  while True:
+    try:
+      value = value.replace(',', '.', 1)
+      value = float(value)
+      if value < 0:
+        print(f'Значение {name} не может быть меньше ноля')
+        value = input(f'Введите не отрицательное значение {name}: ')
+    except ValueError:
+      value = input(f'Введите правильное числовое значение {name}: ')
+    except AttributeError:
+      return value
+  return value
