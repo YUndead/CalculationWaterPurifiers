@@ -1,12 +1,13 @@
-def parameter_exception(value):
-    if value[0] < 5 or value[2] >= 100 or value[3] > 30 or value[5] > 12 or value[7] > 30:
-        print(
-            'Показатели состава воды имеет значительные превышения допустимых концентраций.'
-            'Для индивидуального расчета системы очистки обратитесь к сотрудникам технического отдела.')
+def parameter_exception():
+    print('Показатели состава воды имеют большие отклонения от допустимых значений.'
+          'Для индивидуального расчета системы очистки обратитесь к сотрудникам технического отдела.')
 
 
 def parameter_calculation(value):
-    if value[3] <= 2 and value[7] < 2 and value[5] <= 8 and value[1] <= 3:
+    if value[0] > 9 or value[0] < 6:
+        parameter_exception()
+        return
+    elif value[3] <= 2 and value[7] < 2 and value[5] <= 8 and value[1] <= 3:
         return ('катионит PC002')
     if 2 > value[3] <= 15 and value[7] <= 5 and value[5] <= 10 and value[1] <= 3 and value[6] <= 3:
         return ('Экотар В')
